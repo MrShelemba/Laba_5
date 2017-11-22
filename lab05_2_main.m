@@ -13,7 +13,12 @@ t1 = 4.7;
 t2 = 5.8;
 n1 = (t1*fs)+1;
 n2 = (t2*fs)+1;
-t = (0:length(eeg1)-1)/fs;
 figure(7)
 plot(t(n1:n2), eeg1(n1:n2)), grid on;
 
+%=== Завдання #2.3 ===
+% Обчислення незміщеної оцінки АКФ сигналу ЕЕГ
+maxlag = fix(0.8*length(eeg1));
+akf = xcorr(eeg1, eeg1, maxlag, 'unbiased');
+figure(8)
+plot(akf);
