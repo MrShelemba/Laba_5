@@ -65,4 +65,3 @@ N2 = length(Sy2);
 t_3 = (0:N2-1)/N2*fs;
 figure(13)
 plot(t_3, Syn2), grid on;
-
