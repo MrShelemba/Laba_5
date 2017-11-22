@@ -29,7 +29,7 @@ subplot(2,1,2); plot(t_2(n1:n2), eeg2(n1:n2)), grid on;
 xlabel('Час'); ylabel('Амплітуда');
 
 % Обчислення ВКФ сигналів ЕЕГ
-vkf = xcorr(eeg1, eeg2, maxlag, 'unbiased');
+vkf = xcorr(eeg1, eeg2, maxlag);
 figure(20)
 plot(vkf);
 title('ВКФ сигналів ЕЕГ');

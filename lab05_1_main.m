@@ -30,7 +30,6 @@ x = s + v;
 
 % Графіки отриманих сигналів
 figure(1)
-y = filter(v, s, x);
 subplot(3, 1, 1), plot(t, x);
 title('Сигнал'); 
 ylim([-2 2]); 
@@ -70,12 +69,18 @@ xlabel('Відліки'); ylabel('Амплітуда');
 t3 = 0:100; % вектор часу
 v3 = randn(size(t3))*sqrt(D);
 s3 = A*cos(2*pi*f0*t3);
-x3 = s3+v3;
+x3 = s3 + v3;
 
 maxlag3 = fix(0.3*length(x3));
 [r3, lags3] = xcorr(x3, maxlag3, 'unbiased');
+[r_3, lags_3] = xcorr(x3, maxlag3, 'biased');
 figure(4)
-plot(lags3, r3); title('Незміщена АКФ змодельованого процесу при t = 100');
+subplot(2, 1, 1); plot(lags3, r3); 
+title('Незміщена АКФ змодельованого процесу при t = 100');
+xlim([-30 30]);
+ylabel('Амплітуда');
+subplot(2, 1, 2); plot(lags_3, r_3); 
+title('Зміщена АКФ змодельованого процесу при t = 100');
 xlim([-30 30]);
 xlabel('Відліки'); ylabel('Амплітуда');
 
@@ -83,11 +88,17 @@ xlabel('Відліки'); ylabel('Амплітуда');
 t4 = 0:1000; % вектор часу
 v4 = randn(size(t4))*sqrt(D);
 s4 = A*cos(2*pi*f0*t4);
-x4 = s4+v4;
+x4 = s4 + v4;
 
 maxlag4 = fix(0.3*length(x4));
 [r4, lags4] = xcorr(x4, maxlag4, 'unbiased');
+[r_4, lags_4] = xcorr(x4, maxlag4, 'biased');
 figure(5)
-plot(lags4, r4); title('Незміщена АКФ змодельованого процесу при t = 1000');
+subplot(2, 1, 1); plot(lags4, r4); 
+title('Незміщена АКФ змодельованого процесу при t = 1000');
+xlim([-30 30]);
+ylabel('Амплітуда');
+subplot(2, 1, 2); plot(lags_4, r_4); 
+title('Зміщена АКФ змодельованого процесу при t = 1000');
 xlim([-30 30]);
 xlabel('Відліки'); ylabel('Амплітуда');
