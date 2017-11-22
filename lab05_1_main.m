@@ -49,14 +49,14 @@ fprintf('Відношення шум/сигнал = %4.3g\n', snr(x, v))
 %=== Завдання #1.3 ===
 % Обчислення незміщеної оцінки АКФ змодельованого процесу  
 maxlag = fix(0.2*length(x));
-[v, lags] = xcorr(x, x, maxlag, 'unbiased');
+[v, lags] = xcorr(x, maxlag, 'unbiased');
 figure(2)
 plot(lags, v);
 
 %=== Завдання #1.4 ===
 % Обчислення зміщеної оцінки АКФ змодельованого процесу  
 maxlag2 = fix(0.8*length(x));
-[v2, lags2] = xcorr(x, x, maxlag2, 'biased');
+[v2, lags2] = xcorr(x, maxlag2, 'biased');
 figure(3)
 plot(lags2, v2); title('Зміщена АКФ змодельованого процесу');
 xlim([-5 5]);
@@ -70,7 +70,7 @@ s3 = A*cos(2*pi*f0*t3);
 x3 = s3+v3;
 
 maxlag3 = fix(0.3*length(x3));
-[r3, lags3] = xcorr(x3, x3, maxlag3, 'unbiased');
+[r3, lags3] = xcorr(x3, maxlag3, 'unbiased');
 figure(4)
 plot(lags3, r3);
 xlim([-30 30]);
@@ -82,7 +82,7 @@ s4 = A*cos(2*pi*f0*t4);
 x4 = s4+v4;
 
 maxlag4 = fix(0.3*length(x4));
-[r4, lags4] = xcorr(x4, x4, maxlag4, 'unbiased');
+[r4, lags4] = xcorr(x4, maxlag4, 'unbiased');
 figure(5)
 plot(lags4, r4);
 xlim([-30 30]);
