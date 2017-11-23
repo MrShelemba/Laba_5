@@ -2,7 +2,7 @@
 % Завантаження сигналу ЕЕГ файл (eeg1-p4.dat)
 fs = 100;
 eeg = load('eeg1-p4.dat');
-eeg1 = detrend(eeg1);
+eeg1 = detrend(eeg);
 t = (0:length(eeg1)-1)/fs;
 figure(6)
 plot(t, eeg1); title('Графік сигналу ЕКГ (eeg1-p4.dat)');
@@ -26,21 +26,18 @@ akf = xcorr(eeg1, maxlag1, 'unbiased');
 figure(8)
 plot(akf);
 title('Незміщена оцінка АКФ сигналу ЕЕГ');
-xlabel('Відліки'); ylabel('Амплітуда');
+xlabel('Відліки'); ylabel('Значення');
 
 %=== Завдання #2.5 ===
 % Обчислення спектральної щільності сигналу
 Sx = abs(fft(eeg1)/length(eeg1));
-Sy = Sx';
-Syf = [Sy(1),2.*Sy(2:end-1),Sy(end)];
-Syn = fftshift(Syf);
-N = length(Sy);
-t3 = (0:N-1)/N*fs;
+Sy = Sx(1:length(eeg1)/2+1);
+Sy(2:end-1) = 2*Sy(2:end-1);
+f = fs*(0:(length(eeg1)/2))/length(eeg1);
 figure(9)
-plot(t3, Syn), grid on;
+plot(f,Sy), grid on;
 title('Спектральна щільність сигналу ЕЕГ');
-xlabel('Час'); ylabel('Амплітуда');
-
+xlabel('Частота'); ylabel('Значення');
 
 %=== Завдання #2.6 ===
 % Завантаження сигналу ЕЕГ файл (eeg1-f3.dat)
@@ -67,16 +64,14 @@ akf2 = xcorr(eeg_1, maxlag2, 'unbiased');
 figure(12)
 plot(akf2);
 title('Незміщена оцінка АКФ сигналу ЕЕГ');
-xlabel('Відліки'); ylabel('Амплітуда');
+xlabel('Відліки'); ylabel('Значення');
 
 % Обчислення спектральної щільності сигналу
-Sx2 = abs(fft(eeg_1)/length(eeg_1));
-Sy2 = Sx2';
-Syf2 = [Sy2(1),2.*Sy2(2:end-1),Sy2(end)];
-Syn2 = fftshift(Syf2);
-N2 = length(Sy2);
-t_3 = (0:N2-1)/N2*fs;
+Sx = abs(fft(eeg_1)/length(eeg_1));
+Sy = Sx(1:length(eeg_1)/2+1);
+Sy(2:end-1) = 2*Sy(2:end-1);
+f = fs*(0:(length(eeg_1)/2))/length(eeg_1);
 figure(13)
-plot(t_3, Syn2), grid on;
+plot(f,Sy), grid on;
 title('Спектральна щільність сигналу ЕЕГ');
-xlabel('Час'); ylabel('Амплітуда');
+xlabel('Частота'); ylabel('Значення');

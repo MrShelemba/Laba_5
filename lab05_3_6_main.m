@@ -40,16 +40,14 @@ vkf = xcorr(eeg1, eeg2, maxlag);
 figure(24)
 plot(vkf);
 title('ВКФ сигналів ЕЕГ');
-xlabel('Відліки'); ylabel('Амплітуда');
+xlabel('Відліки'); ylabel('Значення');
 
 % Обчислення взаємної спектральної щільності сигналів ЕЕГ
 Sx = abs(fft(vkf)/length(vkf));
-Sy = Sx';
-Syf = [Sy(1),2.*Sy(2:end-1),Sy(end)];
-Syn = fftshift(Syf);
-N = length(Sy);
-t3 = (0:N-1)/N*fs;
+Sy = Sx(1:length(vkf)/2+1);
+Sy(2:end-1) = 2*Sy(2:end-1);
+f = fs*(0:(length(vkf)/2))/length(vkf);
 figure(25)
-plot(t3, Syn), grid on;
-title('Взаємна спектральна щільність сигналів ЕЕГ');
-xlabel('Час'); ylabel('Амплітуда');
+plot(f,Sy), grid on;
+title('Спектральна щільність сигналу ЕЕГ');
+xlabel('Частота'); ylabel('Значення');
