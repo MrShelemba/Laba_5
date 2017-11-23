@@ -46,5 +46,5 @@ Sy(2:end-1) = 2*Sy(2:end-1);
 f = fs*(0:(length(vkf)/2))/length(vkf);
 figure(17)
 plot(f,Sy), grid on;
-title('Спектральна щільність сигналу ЕЕГ');
+title('Взаємна спектральна щільність сигналів ЕЕГ');
 xlabel('Частота'); ylabel('Значення');
