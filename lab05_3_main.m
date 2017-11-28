@@ -25,13 +25,16 @@ t2 = 6.78;
 n1 = fix(t1*fs)+1;
 n2 = fix(t2*fs)+1;
 figure(15)
-subplot(2,1,1); plot(t_1(n1:n2), eeg1(n1:n2)), grid on;
+eeg1 = eeg1(n1:n2);
+eeg2 = eeg2(n1:n2);
+subplot(2,1,1); plot(t_1(n1:n2), eeg1), grid on;
 title('Епоха сигналів ЕЕГ від 5,71 с до 6,78 с'); ylabel('Амплітуда');
-subplot(2,1,2); plot(t_2(n1:n2), eeg2(n1:n2)), grid on;
+subplot(2,1,2); plot(t_2(n1:n2), eeg2), grid on;
 xlabel('Час'); ylabel('Амплітуда');
 
 %=== Завдання #3.3 ===
 % Обчислення ВКФ сигналів ЕЕГ
+maxlag = 100;
 vkf = xcorr(eeg1, eeg2, maxlag);
 figure(16)
 plot(vkf);

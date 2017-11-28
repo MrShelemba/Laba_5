@@ -31,13 +31,13 @@ x = s + v;
 % Графіки отриманих сигналів
 figure(1)
 subplot(3, 1, 1), plot(t, x);
-title('Сигнал'); 
+title('Стаціонарний випадковий процес'); 
 ylim([-2 2]); 
 ylabel('Амплітуда');
 subplot(3, 1, 2), plot(t, s);
-title('Сигнал без шуму'); ylabel('Амплітуда')
+title('Косинусоїда'); ylabel('Амплітуда')
 subplot(3, 1, 3), plot(t, v);
-title('Шум'); xlabel('Час'); ylabel('Амплітуда');
+title('Нормальний білий шум'); xlabel('Час'); ylabel('Амплітуда');
 
 %=== Завдання #1.2 ===
 % Обчислення оцінки дисперсії шуму, дисперсії сигналу та відношення шум/сигнал
@@ -50,18 +50,20 @@ fprintf('Відношення шум/сигнал = %4.3g\n', snr(s, v))
 maxlag = fix(0.2*length(x));
 [v, lags] = xcorr(x, maxlag, 'unbiased');
 figure(2)
-plot(lags, v); title('Незміщена АКФ змодельованого процесу');
+subplot(2, 1, 1); plot(lags, v); title('Незміщена АКФ');
 xlim([-5 5]);
-xlabel('Відліки'); ylabel('Значення');
+ylabel('Значення');
+subplot(2, 1, 2); plot(lags, v); xlabel('Відліки'); ylabel('Значення');
 
 %=== Завдання #1.4 ===
 % Обчислення зміщеної оцінки АКФ змодельованого процесу  
 maxlag2 = fix(0.8*length(x));
 [v2, lags2] = xcorr(x, maxlag2, 'biased');
 figure(3)
-plot(lags2, v2); title('Зміщена АКФ змодельованого процесу');
+subplot(2, 1, 1); plot(lags2, v2); title('Зміщена АКФ');
 xlim([-5 5]);
-xlabel('Відліки'); ylabel('Значення');
+ylabel('Значення');
+subplot(2, 1, 2); plot(lags2, v2); xlabel('Відліки'); ylabel('Значення');
 
 %=== Завдання #1.5 ===
 % Обчислення оцінки АКФ змодельованого процесу при збільшенні тривалості процесу 
@@ -76,11 +78,11 @@ maxlag3 = fix(0.3*length(x3));
 [r_3, lags_3] = xcorr(x3, maxlag3, 'biased');
 figure(4)
 subplot(2, 1, 1); plot(lags3, r3); 
-title('Незміщена АКФ змодельованого процесу при t = 100');
+title('Незміщена АКФ');
 xlim([-30 30]);
 ylabel('Значення');
 subplot(2, 1, 2); plot(lags_3, r_3); 
-title('Зміщена АКФ змодельованого процесу при t = 100');
+title('Зміщена АКФ');
 xlim([-30 30]);
 xlabel('Відліки'); ylabel('Значення');
 
@@ -95,10 +97,10 @@ maxlag4 = fix(0.3*length(x4));
 [r_4, lags_4] = xcorr(x4, maxlag4, 'biased');
 figure(5)
 subplot(2, 1, 1); plot(lags4, r4); 
-title('Незміщена АКФ змодельованого процесу при t = 1000');
+title('Незміщена АКФ');
 xlim([-30 30]);
 ylabel('Значення');
 subplot(2, 1, 2); plot(lags_4, r_4); 
-title('Зміщена АКФ змодельованого процесу при t = 1000');
+title('Зміщена АКФ');
 xlim([-30 30]);
 xlabel('Відліки'); ylabel('Значення');

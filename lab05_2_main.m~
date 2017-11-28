@@ -1,8 +1,0 @@
-%=== Завдання #2.1 ===
-% Завантаження сигналу ЕЕГ файл (eeg1-p4.dat)
-fs = 
-eeg = load('eeg1-p4.dat');
-eeg1 = detrend(eeg);
-t = 
-figure()
-...

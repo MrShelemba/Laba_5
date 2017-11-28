@@ -22,10 +22,12 @@ t1 = 4.7;
 t2 = 5.8;
 n1 = fix(t1*fs)+1;
 n2 = fix(t2*fs)+1;
+eeg1 = eeg1(n1:n2);
+eeg2 = eeg2(n1:n2);
 figure(19)
-subplot(2,1,1); plot(t_1(n1:n2), eeg1(n1:n2)), grid on;
+subplot(2,1,1); plot(t_1(n1:n2), eeg1), grid on;
 title('Епоха сигналів ЕЕГ від 4,7 с до 5,8 с'); ylabel('Амплітуда');
-subplot(2,1,2); plot(t_2(n1:n2), eeg2(n1:n2)), grid on;
+subplot(2,1,2); plot(t_2(n1:n2), eeg2), grid on;
 xlabel('Час'); ylabel('Амплітуда');
 
 % Обчислення ВКФ сигналів ЕЕГ

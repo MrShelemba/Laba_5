@@ -14,8 +14,9 @@ t1 = 4.7;
 t2 = 5.8;
 n1 = fix(t1*fs)+1;
 n2 = fix(t2*fs)+1;
+eeg1 = eeg1(n1:n2);
 figure(7)
-plot(t(n1:n2), eeg1(n1:n2)), grid on;
+plot(t(n1:n2), eeg1), grid on;
 title('Епоха сигналу ЕЕГ від 4,7 с до 5,8 с');
 xlabel('Час'); ylabel('Амплітуда');
 
@@ -53,13 +54,14 @@ t_1 = 4.2;
 t_2 = 4.96;
 n_1 = fix(t_1*fs)+1;
 n_2 = fix(t_2*fs)+1;
+eeg_1 = eeg_1(n_1:n_2);
 figure(11)
-plot(t_(n_1:n_2), eeg_1(n_1:n_2)), grid on;
+plot(t_(n_1:n_2), eeg_1), grid on;
 title('Епоха сигналу ЕЕГ від 4,2 с до 4,96 с');
 xlabel('Час'); ylabel('Амплітуда');
 
 % Обчислення незміщеної оцінки АКФ сигналу ЕЕГ
-maxlag2 = fix(0.8*length(eeg_1));
+maxlag2 = fix(0.9*length(eeg_1));
 akf2 = xcorr(eeg_1, maxlag2, 'unbiased');
 figure(12)
 plot(akf2);
